@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hop Haven Craft Brewery's Dynamic Beer Selection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 100px; /* Adjusted padding to push content below the header and navbar */
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed; /* Fix navbar to the top */
+            top: 0; /* Position at the top */
+            width: 100%; /* Full width */
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            background-color: #444;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed; /* Fix header to the top */
+            top: 40px; /* Position below the navbar */
+            width: 100%; /* Full width */
+            z-index: 900; /* Ensure it's above other content but below navbar */
+        }
+
+        .splash-image {
+            margin-top: 160px; /* Adjusted margin to prevent overlapping with the fixed header and navbar */
+        }
+
+        .splash-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: auto;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        main img {
+            max-width: 30%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 2% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 1200px;
+            height: 90vh;
+            overflow: auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #beerListImage {
+            max-width: 100%;
+            max-height: 80vh;
+            margin: 0 auto;
+            display: block;
+        }
+
+        #about-us,
+        #craft-beer-menu,
+        #contact-location {
+            font-size: 30px;
+            margin-top: 80px; /* Increased margin-top to add more spacing */
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                height: 80vh;
+            }
+            #beerListImage {
+                max-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Hop Haven Craft Brewery</h1>
+    </header>
+
+    <nav class="navbar">
+        <a href="#about-us">About Us</a>
+        <a href="#craft-beer-menu">Beer List</a>
+    </nav>
+
+    <div class="splash-image">
+        <img src="images/Hop_Haven_Brewery_Entrance.jpg" alt="Hop Haven Brewery Entrance">
+    </div>
+    
+    <main>
+        <section id="about-us">
+            <h2>About Us</h2>
+            <p>Welcome to Hop Haven Craft Brewery!</p>
+            <p>Tucked away in the vibrant heart of the city, Hop Haven Craft Brewery has been a beacon of artisanal brewing excellence since it first opened its doors in 2016...</p>
+        </section>
+
+        <section id="craft-beer-menu">
+            <h2>Our Current Craft Selection</h2>
+            <img src="images/Clickable_Beer_List_Button.jpg" alt="Weekly craft beer list" onclick="openModal()">
+            <p>Discover our ever-changing selection of craft beers!</p>
+
+            <!-- The Modal -->
+            <div id="beerListModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <p>Current Craft Beer Selection:</p>
+                    <img id="beerListImage" src="images/Craft_Beer_List_Menu.jpg" alt="Craft Beer List">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-location">
+            <h2>Contact and Location</h2>
+            <img src="images/location.png" alt="Map location of Hop Haven Craft Brewery">
+            <p>123 Craft Beer Lane, Brewtown, USA</p>
+            <p>Phone: (123) 456-7890</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Hop Haven Craft Brewery</p>
+    </footer>
+
+    <script>
+        function openModal() {
+            var modal = document.getElementById('beerListModal');
+            var beerListImage = document.getElementById('beerListImage');
+
+            beerListImage.src = 'images/Craft_Beer_List_Menu.jpg';
+
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('beerListModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('beerListModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
